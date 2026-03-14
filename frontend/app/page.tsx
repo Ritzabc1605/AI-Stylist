@@ -1,5 +1,10 @@
+"use client";
+
 import BottomNav from "./components/BottomNav";
 import ChatButton from "./components/ChatButton";
+import SearchModal from "./components/SearchModal";
+import OutfitResultsDrawer from "./components/OutfitResultsDrawer";
+import { useStylistStore } from "../store/stylistStore";
 
 const categories = ["Women", "Men", "Kids"];
 const categoryChips = ["Sarees", "T-shirts", "Western", "Ethnic", "Bridal wear"];
@@ -63,6 +68,7 @@ const shopCategories = [
 ];
 
 export default function Home() {
+  const { openSearch } = useStylistStore();
   return (
     <div className="bg-[#FAF7F4] min-h-screen pb-20">
       {/* Header */}
@@ -87,7 +93,7 @@ export default function Home() {
 
         {/* Search Bar */}
         <div className="px-4 pb-3">
-          <div className="flex items-center gap-2 bg-gray-100 rounded-xl px-3 py-2.5">
+          <div onClick={openSearch} className="flex items-center gap-2 bg-gray-100 rounded-xl px-3 py-2.5 cursor-pointer active:bg-gray-200 transition-colors">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#9CA3AF" strokeWidth="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
             <span className="text-sm text-gray-400">Search "lehengas"</span>
           </div>
@@ -254,6 +260,8 @@ export default function Home() {
 
       <BottomNav />
       <ChatButton />
+      <SearchModal />
+      <OutfitResultsDrawer />
     </div>
   );
 }

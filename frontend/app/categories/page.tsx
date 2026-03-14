@@ -1,6 +1,11 @@
+"use client";
+
 import Link from "next/link";
 import BottomNav from "../components/BottomNav";
 import ChatButton from "../components/ChatButton";
+import SearchModal from "../components/SearchModal";
+import OutfitResultsDrawer from "../components/OutfitResultsDrawer";
+import { useStylistStore } from "../../store/stylistStore";
 
 const womenCategories = [
   { name: "Sarees", count: 12, color: "#D4A8B4" },
@@ -25,6 +30,7 @@ const menCategories = [
 ];
 
 export default function CategoriesPage() {
+  const { openSearch } = useStylistStore();
   return (
     <div className="bg-[#FAF7F4] min-h-screen pb-20">
       {/* Header */}
@@ -34,7 +40,7 @@ export default function CategoriesPage() {
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#374151" strokeWidth="2.5" strokeLinecap="round"><path d="M19 12H5m7-7l-7 7 7 7"/></svg>
           </Link>
           <h1 className="text-base font-bold text-gray-900 flex-1">Categories</h1>
-          <button className="text-gray-500">
+          <button onClick={openSearch} className="text-gray-500">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
           </button>
           <button className="text-gray-500">
@@ -77,6 +83,8 @@ export default function CategoriesPage() {
 
       <BottomNav />
       <ChatButton />
+      <SearchModal />
+      <OutfitResultsDrawer />
     </div>
   );
 }
